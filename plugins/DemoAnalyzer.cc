@@ -167,9 +167,9 @@ DemoAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 
    edm::Handle<LHEEventProduct> wgtsource;
    iEvent.getByToken(LheToken_, wgtsource);
-   for(int i=0; i<1000; i++) {
-      pweight[i]=wgtsource->weights()[i].wgt/wgtsource->originalXWGTUP(); 
-      //std::cout<<i<<" "<<pweight[i]<<std::endl;
+   for(size_t ki=0; ki<wgtsource->weights().size(); ki++) {
+      pweight[ki]=wgtsource->weights()[ki].wgt/wgtsource->originalXWGTUP(); 
+      //std::cout<<i<<" "<<pweight[ki]<<std::endl;
    }
    outTree_->Fill();
    std::cout<<"Htot:Hgg:Hbb:Hww:Hzz"<<Htot<<" "<<Hgg<<" "<<Hbb<<" "<<Hww<<" "<<Hzz<<std::endl;
